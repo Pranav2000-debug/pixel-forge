@@ -13,10 +13,12 @@
     "@clerk/nextjs": "^6.36.4",
     "@prisma/adapter-pg": "^7.2.0",
     "@prisma/client": "^7.2.0",
+    "axios": "^1.13.2",
     "cloudinary": "^2.8.0",
     "daisyui": "^5.5.14",
     "dotenv": "^17.2.3",
     "next": "16.1.0",
+    "next-cloudinary": "^6.17.5",
     "pg": "^8.16.3",
     "react": "19.2.3",
     "react-dom": "19.2.3"

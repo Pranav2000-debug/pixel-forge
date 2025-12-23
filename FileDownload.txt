@@ -1,0 +1,17 @@
+Browsers intentionally separate navigation from downloading for security. When you open an image or PDF URL, the browser treats it as content to display, so it opens in a new tab instead of saving it. JavaScript is not allowed to directly save files to a user’s system; downloads must always be explicit and user-initiated.
+
+A Blob (Binary Large Object) represents raw binary data stored in browser memory. It contains the actual bytes of a file (such as an image or PDF), not a URL. A Blob is essentially a file that exists temporarily in memory, without a filename or location on disk.
+
+When a file is fetched using fetch or Axios, the browser only retrieves the data — it does not download it. Converting the response into a Blob turns the downloaded bytes into a file-like object that the browser can work with locally.
+
+Using URL.createObjectURL(blob) creates a temporary local URL that points to the Blob in memory. This URL is not a real network address; it exists only in the current browser session. Because the browser treats this as a local resource, it allows the file to be downloaded instead of opened.
+
+To trigger the download, browsers require an anchor (<a>) element with the download attribute. Whether clicked by the user or triggered programmatically, this is the only allowed mechanism. There is no browser API that downloads files without using an anchor.
+
+Axios can be used instead of fetch, but it must be explicitly told to return binary data. Regardless of the library used, the process is the same: fetch the file, store it as a Blob, create a temporary object URL, and let the browser download it.
+
+In React, useRef is commonly used to access DOM elements like images. It allows reading the resolved image URL directly from the browser without triggering re-renders, which is useful when downloading files already displayed on the page.
+
+A cleaner production approach is to download files via a backend endpoint. The server fetches the file and sets proper download headers, allowing the browser to download it naturally. This avoids client-side memory usage and works reliably across browsers.
+
+In short: Blobs store file data in memory, object URLs point to that data, and browsers only allow downloads through anchors to maintain security.

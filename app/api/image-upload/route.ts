@@ -30,6 +30,7 @@ export async function POST(request: NextRequest) {
     if (!file) {
       return NextResponse.json({ message: "File not found" }, { status: 400 });
     }
+    // cloudinary code for upload as stream with options
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
     const cloudinaryResult = await new Promise<CloudinaryUploadResult>((res, rej) => {
@@ -39,6 +40,7 @@ export async function POST(request: NextRequest) {
       });
       uploadStream.end(buffer);
     });
+    // need the cloudinary pub id to display image in frontend
     return NextResponse.json({ publicId: cloudinaryResult.public_id }, { status: 200 });
   } catch (error) {
     console.log("uploading image failed", error);
