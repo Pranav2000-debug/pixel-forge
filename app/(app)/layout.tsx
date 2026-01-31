@@ -41,7 +41,7 @@ export default function AppLayout({children,}: Readonly<{children: React.ReactNo
             </div>
             <div className="flex-1">
               <Link href="/" onClick={handleLogoClick}>
-                <div className="btn btn-ghost normal-case text-2xl font-bold tracking-tight cursor-pointer">Cloudinary Showcase</div>
+                <div className="btn btn-ghost normal-case text-2xl font-bold tracking-tight cursor-pointer">Pixel Forge</div>
               </Link>
             </div>
             <div className="flex-none flex items-center space-x-4">
